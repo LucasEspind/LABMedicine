@@ -20,6 +20,6 @@ namespace LABMedicine.Models
         public EstadoSistemaEnum EstadoSistema { get; set; }
 
         [Column("Total_de_Atendimentos_Realizados")]
-        public int TotalAtendimentos { get; set; }
+        public int TotalAtendimentosRealizados { get; set; }
     }
 }

@@ -95,6 +95,14 @@ namespace LABMedicine.Controllers
             var pacienteId = labmedicinebd.Pacientes.Find(identificador);
             if (pacienteId != null)
             {
+                if (status == StatusAtendimentoEnum.ATENDIDO)
+                {
+                    pacienteId.TotalAtendimentosRealizados += 1;
+                    pacienteId.StatusAtendimento = status;
+                    labmedicinebd.Attach(pacienteId);
+                    labmedicinebd.SaveChanges();
+                    return Ok("Status Atualizado com sucesso!");
+                }
                 pacienteId.StatusAtendimento = status;
                 labmedicinebd.Attach(pacienteId);
                 labmedicinebd.SaveChanges();

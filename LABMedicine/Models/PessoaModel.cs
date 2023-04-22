@@ -2,8 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LABMedicine.Models
-{
-    
+{ 
     abstract public class PessoaModel
     {
         [Key, Column("Identificado")]

@@ -1,8 +1,12 @@
-﻿namespace LABMedicine.Enumerator
+﻿using System.Text.Json.Serialization;
+
+namespace LABMedicine.Enumerator
 {
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+
     public enum EstadoSistemaEnum
     {
-        Atvio = 0,
+        Ativo = 0,
         Inativo = 1
     }
 }
