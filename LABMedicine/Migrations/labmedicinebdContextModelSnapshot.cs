@@ -22,6 +22,32 @@ namespace LABMedicine.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("LABMedicine.Models.AtendimentoModel", b =>
+                {
+                    b.Property<int>("Atendimentos")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Codigo_Atendimento");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Atendimentos"));
+
+                    b.Property<int>("Identificador_Medico")
+                        .HasColumnType("int")
+                        .HasColumnName("Identificador_Medico");
+
+                    b.Property<int>("Identificador_Paciente")
+                        .HasColumnType("int")
+                        .HasColumnName("Identificador_Paciente");
+
+                    b.Property<int>("especializacaoClinica")
+                        .HasColumnType("int")
+                        .HasColumnName("Especialidade_Clinica");
+
+                    b.HasKey("Atendimentos");
+
+                    b.ToTable("Atendimentos");
+                });
+
             modelBuilder.Entity("LABMedicine.Models.EnfermeiroModel", b =>
                 {
                     b.Property<int>("Identificador")
@@ -33,8 +59,7 @@ namespace LABMedicine.Migrations
 
                     b.Property<string>("CPF")
                         .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("nvarchar(11)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CadastroCRM_UF")
                         .IsRequired()
@@ -79,8 +104,7 @@ namespace LABMedicine.Migrations
 
                     b.Property<string>("CPF")
                         .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("nvarchar(11)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CadastroCRM_UF")
                         .IsRequired()
@@ -117,7 +141,7 @@ namespace LABMedicine.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TotalAtendimentos")
+                    b.Property<int>("TotalAtendimentosRealizados")
                         .HasColumnType("int")
                         .HasColumnName("Total_de_Atendimentos_Realizados");
 
@@ -137,8 +161,7 @@ namespace LABMedicine.Migrations
 
                     b.Property<string>("CPF")
                         .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("nvarchar(11)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ContatoEmergencia")
                         .IsRequired()

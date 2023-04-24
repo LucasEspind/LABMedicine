@@ -6,10 +6,10 @@ namespace LABMedicine.Models
     [Table("Enfermeiro")]
     public class EnfermeiroModel : PessoaModel
     {
-        [Required, Column("Instituicao_de_Ensino")]
+        [Required(ErrorMessage = "Por favor insira uma Instituição de Ensino existente!"), Column("Instituicao_de_Ensino")]
         public string InstituicaoEnsino { get; set; }
 
-        [Required, Column("Cadastro_CRM/UF")]
+        [Required(ErrorMessage = "Por favor insira um cadastro do CRM/UF correto!"), Column("Cadastro_CRM/UF")]
         public string CadastroCRM_UF { get; set; }
     }
 }

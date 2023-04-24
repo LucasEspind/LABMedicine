@@ -12,6 +12,21 @@ namespace LABMedicine.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Atendimentos",
+                columns: table => new
+                {
+                    Codigo_Atendimento = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Identificador_Medico = table.Column<int>(type: "int", nullable: false),
+                    Especialidade_Clinica = table.Column<int>(type: "int", nullable: false),
+                    Identificador_Paciente = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Atendimentos", x => x.Codigo_Atendimento);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Enfermeiro",
                 columns: table => new
                 {
@@ -22,7 +37,7 @@ namespace LABMedicine.Migrations
                     Nome_Completo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Genero = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Data_de_Nascimento = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CPF = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
+                    CPF = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Telefone = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -44,7 +59,7 @@ namespace LABMedicine.Migrations
                     Nome_Completo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Genero = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Data_de_Nascimento = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CPF = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
+                    CPF = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Telefone = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -67,7 +82,7 @@ namespace LABMedicine.Migrations
                     Nome_Completo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Genero = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Data_de_Nascimento = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CPF = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
+                    CPF = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Telefone = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -79,6 +94,9 @@ namespace LABMedicine.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Atendimentos");
+
             migrationBuilder.DropTable(
                 name: "Enfermeiro");
 

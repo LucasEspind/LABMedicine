@@ -47,16 +47,20 @@ namespace LABMedicine.Controllers
         }
 
         [HttpPut("{identificador}")]
-        public ActionResult AtualizarMedico([FromRoute]int identificador, [FromBody] AtualizarMedicoDTO atualizarMedicoDTO)
+        public ActionResult AtualizarMedico([FromRoute]int? identificador, [FromBody] AtualizarMedicoDTO atualizarMedicoDTO)
         {
-            if (identificador < 0)
+            if (identificador < 0 || identificador == null)
             {
-                return BadRequest("O identificador inserido é inválido!");
+                return BadRequest("O identificador informado não existe!");
             }
             var medico = labmedicinebd.Medicos.Find(identificador);
             if (medico == null)
             {
                 return NotFound("O identificador inserido não existe no banco de dados!");
+            }
+            if (medico.CPF.Length != 11)
+            {
+                return BadRequest("O CPF deve ter 11 números, sem pontos ou traços!");
             }
             medico.CPF = atualizarMedicoDTO.CPF;
             medico.NomeCompleto = atualizarMedicoDTO.Nome;
@@ -74,9 +78,10 @@ namespace LABMedicine.Controllers
         }
 
         [HttpPut("{identificador}/status")]
-        public ActionResult AtualizarStatusMedico([FromRoute] int identificador, [FromQuery] EstadoSistemaEnum estadoSistema)
+        public ActionResult AtualizarStatusMedico([FromRoute] int? identificador, [FromQuery] EstadoSistemaEnum estadoSistema)
         {
-            if (identificador < 0)
+
+            if (identificador < 0 || identificador == null)
             {
                 return BadRequest("O identificador informado não existe!");
             }
@@ -123,8 +128,12 @@ namespace LABMedicine.Controllers
         }
 
         [HttpGet("{identificador}")]
-        public ActionResult MostrarMedicoPorID(int identificador)
+        public ActionResult MostrarMedicoPorID([FromRoute]int? identificador)
         {
+            if (identificador < 0 || identificador == null)
+            {
+                return BadRequest("O identificador informado não existe!");
+            }
             var medico = labmedicinebd.Medicos.Where(x => x.Identificador== identificador).FirstOrDefault();
             if (medico == null)
             {
@@ -134,8 +143,12 @@ namespace LABMedicine.Controllers
         }
 
         [HttpDelete("{identificador}")]
-        public ActionResult ExcluirMedicoPorID(int identificador)
+        public ActionResult ExcluirMedicoPorID([FromRoute] int? identificador)
         {
+            if (identificador < 0 || identificador == null)
+            {
+                return BadRequest("O identificador informado não existe!");
+            }
             var medico = labmedicinebd.Medicos.Where(x => x.Identificador == identificador).FirstOrDefault();
             if (medico == null)
             {

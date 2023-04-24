@@ -13,9 +13,9 @@ namespace LABMedicine.Controllers
     public class PacientesController : ControllerBase
     {
         labmedicinebdContext labmedicinebd;
-        public PacientesController(labmedicinebdContext context)
+        public PacientesController(labmedicinebdContext labmedicinebd)
         {
-            labmedicinebd = context;
+            this.labmedicinebd = labmedicinebd;
         }
 
 
@@ -54,12 +54,16 @@ namespace LABMedicine.Controllers
 
         }
 
-        [HttpPut("/{Identificador}")]
-        public ActionResult AtualizarDados(int Identificador, [FromBody] AtualizarPacienteDTO paciente)
+        [HttpPut("{identificador}")]
+        public ActionResult AtualizarDados(int? identificador, [FromBody] AtualizarPacienteDTO paciente)
         {
+            if (identificador < 0 || identificador == null)
+            {
+                return BadRequest("O identificador informado não existe!");
+            }
             foreach (var pacientes in labmedicinebd.Pacientes)
             {
-                if (pacientes.Identificador == Identificador)
+                if (pacientes.Identificador == identificador)
                 {
                     if (paciente.CPF.Length != 11)
                     {
@@ -86,23 +90,19 @@ namespace LABMedicine.Controllers
                     return BadRequest("Há campos preenchidos de forma incorreta.");
                 }
             }
-            return NotFound($"Paciente com o identificador {Identificador} não foi encontrado no sistema!");
+            return NotFound($"Paciente com o identificador {identificador} não foi encontrado no sistema!");
         }
 
         [HttpPut("{identificador}/status")]
-        public ActionResult AtualizarStatus([FromRoute] int identificador, [FromQuery] StatusAtendimentoEnum status)
+        public ActionResult AtualizarStatus([FromRoute] int? identificador, [FromQuery] StatusAtendimentoEnum status)
         {
+            if (identificador < 0 || identificador == null)
+            {
+                return BadRequest("O identificador informado não existe!");
+            }
             var pacienteId = labmedicinebd.Pacientes.Find(identificador);
             if (pacienteId != null)
             {
-                if (status == StatusAtendimentoEnum.ATENDIDO)
-                {
-                    pacienteId.TotalAtendimentosRealizados += 1;
-                    pacienteId.StatusAtendimento = status;
-                    labmedicinebd.Attach(pacienteId);
-                    labmedicinebd.SaveChanges();
-                    return Ok("Status Atualizado com sucesso!");
-                }
                 pacienteId.StatusAtendimento = status;
                 labmedicinebd.Attach(pacienteId);
                 labmedicinebd.SaveChanges();
@@ -134,8 +134,12 @@ namespace LABMedicine.Controllers
         }
 
         [HttpGet("{identificador}")]
-        public ActionResult ListagemPacientes([FromRoute] int identificador)
+        public ActionResult ListagemPacientes([FromRoute] int? identificador)
         {
+            if (identificador < 0 || identificador == null)
+            {
+                return BadRequest("O identificador informado não existe!");
+            }
             var paciente = labmedicinebd.Pacientes.Find(identificador);
             if (paciente != null)
             {
@@ -145,8 +149,12 @@ namespace LABMedicine.Controllers
         }
 
         [HttpDelete("{identificador}")]
-        public ActionResult ExcluirPaciente(int identificador) 
+        public ActionResult ExcluirPaciente([FromRoute] int? identificador) 
         {
+            if (identificador < 0 || identificador == null)
+            {
+                return BadRequest("O identificador informado não existe!");
+            }
             var paciente = labmedicinebd.Pacientes.Find(identificador);
             if (paciente != null)
             {

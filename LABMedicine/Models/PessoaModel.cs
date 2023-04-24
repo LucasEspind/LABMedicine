@@ -7,7 +7,7 @@ namespace LABMedicine.Models
     {
         [Key, Column("Identificado")]
         public int Identificador { get; set; }
-        [Column("Nome_Completo")]
+        [Column("Nome_Completo"), Required(ErrorMessage = "Por favor insira um nome de forma correta!")]
         public string NomeCompleto { get; set; }
         public string Genero { get; set; }
 

@@ -8,7 +8,7 @@ namespace LABMedicine.Models
     [Table("Paciente")]
     public class PacienteModel : PessoaModel
     {
-        [MaxLength(100), Required, NotNull, Column("Contato_de_Emergencia")]
+        [MaxLength(100), Required(ErrorMessage = "Por favor insira um contato de emergencia válido!"), NotNull, Column("Contato_de_Emergencia")]
         public string ContatoEmergencia { get; set; }
 
         [Column("Lista_de_Alergias")]
