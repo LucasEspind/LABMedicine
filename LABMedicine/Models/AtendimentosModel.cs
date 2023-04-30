@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace LABMedicine.Models
 {
     [Table("Atendimentos")]
-    public class AtendimentoModel
+    public class AtendimentosModel
     {
         [Key, Column("Codigo_Atendimento")]
         public int Atendimentos { get; set; }

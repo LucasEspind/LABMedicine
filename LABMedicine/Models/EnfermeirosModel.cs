@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LABMedicine.Models
 {
-    [Table("Enfermeiro")]
-    public class EnfermeiroModel : PessoaModel
+    [Table("Enfermeiros")]
+    public class EnfermeirosModel : PessoaModel
     {
         [Required(ErrorMessage = "Por favor insira uma Instituição de Ensino existente!"), Column("Instituicao_de_Ensino")]
         public string InstituicaoEnsino { get; set; }

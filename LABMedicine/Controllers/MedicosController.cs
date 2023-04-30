@@ -12,12 +12,15 @@ namespace LABMedicine.Controllers
     [ApiController]
     public class MedicosController : ControllerBase
     {
-        labmedicinebdContext labmedicinebd;
+        private readonly labmedicinebdContext labmedicinebd;
+
+        // Construtor recebendo uma instância do contexto de banco de dados
         public MedicosController(labmedicinebdContext labmedicinebd)
         {
             this.labmedicinebd = labmedicinebd;
         }
 
+        // Método Post para cadastrar um médico
         [HttpPost]
         public ActionResult CadastrarMedico([FromBody] AdicionarMedicoDTO adicionarMedicoDTO)
         {
@@ -30,7 +33,7 @@ namespace LABMedicine.Controllers
             {
                 return Conflict("Cpf já cadastrado no sistema!");
             }
-            MedicoModel medico = new MedicoModel();
+            MedicosModel medico = new MedicosModel();
             medico.CPF = adicionarMedicoDTO.CPF;
             medico.NomeCompleto = adicionarMedicoDTO.Nome;
             medico.Genero = adicionarMedicoDTO.Genero;
@@ -41,9 +44,13 @@ namespace LABMedicine.Controllers
             medico.EspecializacaoClinica = adicionarMedicoDTO.EspecializacaoClinica;
             medico.TotalAtendimentosRealizados = 0;
             medico.EstadoSistema = EstadoSistemaEnum.Ativo;
-            labmedicinebd.Medicos.Add(medico);
-            labmedicinebd.SaveChanges();
-            return StatusCode(201, new { medico.Identificador, medico.TotalAtendimentosRealizados });
+            if (TryValidateModel(medico))
+            {
+                labmedicinebd.Medicos.Add(medico);
+                labmedicinebd.SaveChanges();
+                return StatusCode(201, new { medico.Identificador, medico.TotalAtendimentosRealizados });
+            }
+            return BadRequest("Há campos preenchidos de forma incorreta.");
         }
 
         [HttpPut("{identificador}")]
@@ -72,9 +79,13 @@ namespace LABMedicine.Controllers
             medico.EspecializacaoClinica = atualizarMedicoDTO.EspecializacaoClinica;
             medico.TotalAtendimentosRealizados = atualizarMedicoDTO.TotalAtendimentosRealizados;
             medico.EstadoSistema = atualizarMedicoDTO.EstadoSistema;
-            labmedicinebd.Medicos.Attach(medico);
-            labmedicinebd.SaveChanges();
-            return Ok("Dados atualizados com sucesso!");
+            if (TryValidateModel(medico))
+            {
+                labmedicinebd.Medicos.Attach(medico);
+                labmedicinebd.SaveChanges();
+                return Ok("Dados atualizados com sucesso!");
+            }
+            return BadRequest("Há campos preenchidos de forma incorreta.");
         }
 
         [HttpPut("{identificador}/status")]
@@ -90,10 +101,14 @@ namespace LABMedicine.Controllers
             {
                 return NotFound($"O médico com identificador {identificador} não existe no sistema!");
             }
-            medico.EstadoSistema = estadoSistema;
-            labmedicinebd.Medicos.Attach(medico);
-            labmedicinebd.SaveChanges();
-            return Ok("Estado no sistema alterado com sucesso!");
+            if (TryValidateModel(medico))
+            {
+                medico.EstadoSistema = estadoSistema;
+                labmedicinebd.Medicos.Attach(medico);
+                labmedicinebd.SaveChanges();
+                return Ok("Estado no sistema alterado com sucesso!");
+            }
+            return BadRequest("Há campos preenchidos de forma incorreta.");
         }
 
         [HttpGet]
@@ -106,16 +121,23 @@ namespace LABMedicine.Controllers
             }
             if (Estado_Sistema == null)
             {
-                List<MedicoModel> medicos = new List<MedicoModel>();
+                List<MedicosModel> medicos = new List<MedicosModel>();
                 foreach (var medico in labmedicinebd.Medicos)
                 {
                     medicos.Add(medico);
                 }
-                return Ok(medicos);
+                if (medicos.Count > 0)
+                {
+                    return Ok(medicos);
+                }
+                else
+                {
+                    return NotFound("Não existem médicos cadastrados no sistema!");
+                }
             }
             else
             {
-                List<MedicoModel> medicos = new List<MedicoModel>();
+                List<MedicosModel> medicos = new List<MedicosModel>();
                 foreach (var medico in labmedicinebd.Medicos)
                 {
                     if (medico.EstadoSistema == Estado_Sistema)
@@ -123,7 +145,14 @@ namespace LABMedicine.Controllers
                         medicos.Add(medico);
                     }
                 }
-                return Ok(medicos);
+                if (medicos.Count > 0)
+                {
+                    return Ok(medicos);
+                }
+                else
+                {
+                    return NotFound("Não existem médicos com o status informado cadastrados no sistema!");
+                }
             }
         }
 

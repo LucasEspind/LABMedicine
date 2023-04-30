@@ -5,7 +5,7 @@ namespace LABMedicine.Models
 { 
     abstract public class PessoaModel
     {
-        [Key, Column("Identificado")]
+        [Key, Column("Identificador")]
         public int Identificador { get; set; }
         [Column("Nome_Completo"), Required(ErrorMessage = "Por favor insira um nome de forma correta!")]
         public string NomeCompleto { get; set; }

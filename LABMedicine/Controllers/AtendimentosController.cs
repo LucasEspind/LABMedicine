@@ -11,7 +11,9 @@ namespace LABMedicine.Controllers
     [ApiController]
     public class AtendimentosController : ControllerBase
     {
-        labmedicinebdContext labmedicinebd;
+        private readonly labmedicinebdContext labmedicinebd;
+
+        // Construtor recebendo uma instância do contexto de banco de dados
         public AtendimentosController(labmedicinebdContext labmedicinebd)
         {
             this.labmedicinebd = labmedicinebd;
@@ -20,7 +22,7 @@ namespace LABMedicine.Controllers
         [HttpPut]
         public ActionResult Atendimento([FromBody] IdentificadorPacienteMedicoDTO identificadorPacienteMedicoDTO)
         {
-            AtendimentoModel atendimento = new AtendimentoModel();
+            AtendimentosModel atendimento = new AtendimentosModel();
             var paciente = labmedicinebd.Pacientes.Find(identificadorPacienteMedicoDTO.Identificador_Paciente);
             var medico = labmedicinebd.Medicos.Find(identificadorPacienteMedicoDTO.Identificador_Medico);
             if (paciente == null)
