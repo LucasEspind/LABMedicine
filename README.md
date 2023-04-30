@@ -23,7 +23,7 @@
 ### Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-[.Net](https://dotnet.microsoft.com/en-us/download), C# que pode ser instalado como extenção no [VisualStudio] (https://visualstudio.microsoft.com/pt-br/) ou semelhante, junto dos seus NuGets Microsoft.EntityFrameworkCore, Microsoft.EntityFrameworkCore.Design, Microsoft.EntityFrameworkCore.SqlServer e Microsoft.EntityFrameworkCore.Tools.
+[.Net](https://dotnet.microsoft.com/en-us/download), C# que pode ser instalado como extenção no [VisualStudio](https://visualstudio.microsoft.com/pt-br/) ou semelhante, junto dos seus NuGets Microsoft.EntityFrameworkCore, Microsoft.EntityFrameworkCore.Design, Microsoft.EntityFrameworkCore.SqlServer e Microsoft.EntityFrameworkCore.Tools.
 
 ### 🎲 Rodando o Back End (servidor)
 
@@ -37,3 +37,11 @@ $ cd Modulo1-ProjetoAvaliativo
 # Execute a aplicação
 $ dotnet run
 
+### 🛠 Tecnologias
+
+Na construção do código foram utlizadas as ferramentas a seguir:
+- [C#](https://learn.microsoft.com/pt-br/dotnet/csharp/)
+- [.Net](https://dotnet.microsoft.com/en-us/download)
+
+### Autor
+--- Lucas de Espindola
