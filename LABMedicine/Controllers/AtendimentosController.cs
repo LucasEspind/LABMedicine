@@ -29,7 +29,7 @@ namespace LABMedicine.Controllers
             {
                 return NotFound("Identificador do paciente não existe no sistema!");
             }
-            else if(medico == null){
+            else if (medico == null) {
                 return NotFound("Identificador do médico não existe no sistema!");
             }
             if (medico.EstadoSistema == EstadoSistemaEnum.Inativo)
@@ -54,6 +54,45 @@ namespace LABMedicine.Controllers
             // Save Changes para Atualização do médico e paciente. Adicionando o Histórico de atendimento no sistema!
             labmedicinebd.SaveChanges();
             return Ok("Atendimento realizado com sucesso! Os dados no sistema foram alterados!");
+        }
+
+        [HttpGet]
+        public ActionResult ListaAtendimentos()
+        {
+            List<AtendimentosModel> atendimentos = new List<AtendimentosModel>();
+            foreach (var atendimento in labmedicinebd.Atendimentos)
+            {
+                atendimentos.Add(atendimento);
+            }
+            return Ok(atendimentos);
+        }
+
+        [HttpGet("{idPaciente}")]
+        public ActionResult AtendimentosPorPaciente(int idPaciente) 
+        {
+            List<AtendimentosModel> atendimentos = new List<AtendimentosModel>();
+            foreach (var atendimento in labmedicinebd.Atendimentos)
+            {
+                if (atendimento.Identificador_Paciente == idPaciente)
+                {
+                    atendimentos.Add(atendimento);
+                }
+            }
+            return Ok(atendimentos);
+        }
+
+        [HttpGet("{idMedico}")]
+        public ActionResult AtendimentosPorMedico(int idMedico)
+        {
+            List<AtendimentosModel> atendimentos = new List<AtendimentosModel>();
+            foreach (var atendimento in labmedicinebd.Atendimentos)
+            {
+                if (atendimento.Identificador_Paciente == idMedico)
+                {
+                    atendimentos.Add(atendimento);
+                }
+            }
+            return Ok(atendimentos);
         }
     }
 }

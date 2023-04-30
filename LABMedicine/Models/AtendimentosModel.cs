@@ -8,7 +8,7 @@ namespace LABMedicine.Models
     public class AtendimentosModel
     {
         [Key, Column("Codigo_Atendimento")]
-        public int Atendimentos { get; set; }
+        public int Codigo_Atendimento { get; set; }
         [Column("Identificador_Medico"), Required]
         public int Identificador_Medico { get; set; }
 

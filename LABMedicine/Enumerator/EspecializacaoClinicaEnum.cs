@@ -6,7 +6,7 @@ namespace LABMedicine.Enumerator
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum EspecializacaoClinicaEnum
     {
-        Clínico_Geral = 0,
+        Clinico_Geral = 0,
         Anestesista = 1,
         Dermatologia = 2,
         Ginecologia = 3,

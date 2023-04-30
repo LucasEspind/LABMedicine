@@ -220,7 +220,7 @@ namespace LABMedicine.Context
                     Telefone = "3199887766",
                     InstituicaoEnsino = "Universidade Federal de Minas Gerais",
                     CadastroCRM_UF = "MG-345678",
-                    EspecializacaoClinica = Enumerator.EspecializacaoClinicaEnum.Clínico_Geral,
+                    EspecializacaoClinica = Enumerator.EspecializacaoClinicaEnum.Clinico_Geral,
                     EstadoSistema = Enumerator.EstadoSistemaEnum.Ativo,
                     TotalAtendimentosRealizados = 0
                 }
