@@ -78,7 +78,7 @@ $ dotnet run
 
 Após a inicialização da API, uma página do swagger será iniciada no seu navegador, ou acesse o link informado pelo compilador.
 
-<p> Utilizando o swagger ou qualquer outra interface visual, como o [Postman](https://www.postman.com/downloads/), você poderá acessar as funcionalidades presentes na categoria [Features](#Features). </p>
+Utilizando o swagger ou qualquer outra interface visual, como o [Postman](https://www.postman.com/downloads/), você poderá acessar as funcionalidades presentes na categoria [Features](#Features). 
 Para o cadastro de todos serão necessários: Identificador (incrementado automaticamente pelo sistema), Nome Completo, Gênero (Masculino, Feminino, Prefiro não Informar), Data de Nascimento, CPF (apenas números) e Telefone.
 
 
@@ -132,7 +132,7 @@ Exemplo: https://localhost:7050/api/pacientes/{identificador}
 
 ### Cadastro de Enfermeiro 👩‍⚕️
 
-Para o cadastro do Enfermeiro todos os atributos serão obrigatórios: Instituição de Ensino da Formação e o seu Cadastro do COFEN/UF (SC-658781).
+Para o cadastro do Enfermeiro todos os atributos serão obrigatórios: Instituição de Ensino da Formação e o seu Cadastro do COFEN/UF(Conselho Federal de Enfermagem / Unidade Federativa).
 
 
 ### Atualização dos dados de Enfermeiros
