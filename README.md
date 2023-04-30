@@ -60,19 +60,19 @@ Utilizando o swagger ou qualquer outra interface visual, como o [Postman](https:
 
 Para o cadastro de todos serão necessários: Identificador, Nome Completo, Gênero, Data de Nascimento, CPF e Telefone.
 
-# Cadastro de Paciente
+### Cadastro de Paciente
 
 Para o cadastro do Paciente serão informadas alguns outros atributos: Lista de Alergias, Lista de Cuidados Específicos, Convênio sendo que o único obrigatório é o Contato de Emergência.
 
-# Cadastro de Enfermeiro
+### Cadastro de Enfermeiro
 
 Para o cadastro do Enfermeiro todos os atributos serão obrigatórios: Instituição de Ensino da Formação e o seu Cadastro do COFEN/UF.
 
-# Cadastro de Médico
+### Cadastro de Médico
 
 Para o cadastro do Médicop todos os atributos serão obrigatórios: Instituição de Ensino da Formação, Cadastro do COFEN/UF e a Especialização Clínica.
 
-# Realização de Consulta
+### Realização de Consulta
 
 Para a realização da consulta apenas deve ser informado os Identificadores do paciente e do médico, após isso o status do paciente mudará para ATENDIDO e o número de atendimentos de ambos aumentara em 1.
 
