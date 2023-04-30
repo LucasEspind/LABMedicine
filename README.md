@@ -125,7 +125,7 @@ Exemplo: https://localhost:7050/api/pacientes/{identificador}
 
 ### Exclusão de Paciente
 
-Para excluir um paciente, o solicitante deve fornecer o identificador do paciente desejado. O sistema, então, procurará o paciente correspondente em seu banco de dados e o excluirá.
+Para excluir um paciente, o solicitante deve fornecer o identificador do paciente desejado. O sistema então, procurará o paciente correspondente em seu banco de dados e o excluirá.
 
 Exemplo: https://localhost:7050/api/pacientes/{identificador}
 
@@ -158,7 +158,7 @@ Exemplo: https://localhost:7050/api/enfermeiros/{identificador}
 
 ### Exclusão de Enfermeiro
 
-Para excluir um enfermeiro, o solicitante deve fornecer o identificador do enfermeiro desejado. O sistema, então, procurará o enfermeiro correspondente em seu banco de dados e o excluirá.
+Para excluir um enfermeiro, o solicitante deve fornecer o identificador do enfermeiro desejado. O sistema então, procurará o enfermeiro correspondente em seu banco de dados e o excluirá.
 
 Exemplo: https://localhost:7050/api/enfermeiros/{identificador}
 
