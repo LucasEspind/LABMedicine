@@ -25,7 +25,7 @@
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [.Net](https://dotnet.microsoft.com/en-us/download), C# que pode ser instalado como extenção no [VisualStudio](https://visualstudio.microsoft.com/pt-br/) ou semelhante, junto dos seus NuGets Microsoft.EntityFrameworkCore, Microsoft.EntityFrameworkCore.Design, Microsoft.EntityFrameworkCore.SqlServer e Microsoft.EntityFrameworkCore.Tools.
 
-### 🤖 Tecnologias
+### Tecnologias
 
 Na construção do código foram utlizadas as ferramentas a seguir:
 - [C#](https://learn.microsoft.com/pt-br/dotnet/csharp/)
@@ -53,13 +53,28 @@ Após a inicalização da API, uma página do swagger será iniciada no seu nave
 
 Utilizando o swagger ou qualquer outra interface visual, como o [Postman](https://www.postman.com/downloads/), você poderá acessar as funcionalidades a seguir:
 
-<li>
- <ul> Cadastro de Paciente </ul>
- <ul> Cadastro de Enfermeiro </ul>
- <ul> Cadastro de Médico </ul>
- <ul> Realização de Consulta </ul>
-</li>
+<a href="#Cadastro de Paciente">- Cadastro de Paciente</a>
+<a href="#Cadastro de Enfermeiro">- Cadastro de Enfermeiro </a>
+<a href="#Cadastro de Médico">- Cadastro de Médico </a>
+<a href="#Realização de Consulta">- Realização de Consulta</a>
 
+Para o cadastro de todos serão necessários: Identificador, Nome Completo, Gênero, Data de Nascimento, CPF e Telefone.
+
+# Cadastro de Paciente
+
+Para o cadastro do Paciente serão informadas alguns outros atributos: Lista de Alergias, Lista de Cuidados Específicos, Convênio sendo que o único obrigatório é o Contato de Emergência.
+
+# Cadastro de Enfermeiro
+
+Para o cadastro do Enfermeiro todos os atributos serão obrigatórios: Instituição de Ensino da Formação e o seu Cadastro do COFEN/UF.
+
+# Cadastro de Médico
+
+Para o cadastro do Médicop todos os atributos serão obrigatórios: Instituição de Ensino da Formação, Cadastro do COFEN/UF e a Especialização Clínica.
+
+# Realização de Consulta
+
+Para a realização da consulta apenas deve ser informado os Identificadores do paciente e do médico, após isso o status do paciente mudará para ATENDIDO e o número de atendimentos de ambos aumentara em 1.
 
 ### Autor
 --- Lucas de Espindola
