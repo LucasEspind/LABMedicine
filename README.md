@@ -78,7 +78,7 @@ $ dotnet run
 
 Após a inicialização da API, uma página do swagger será iniciada no seu navegador, ou acesse o link informado pelo compilador.
 
-Utilizando o swagger ou qualquer outra interface visual, como o [Postman](https://www.postman.com/downloads/), você poderá acessar as funcionalidades presentes na categoria [Features](#Features)
+<p> Utilizando o swagger ou qualquer outra interface visual, como o [Postman](https://www.postman.com/downloads/), você poderá acessar as funcionalidades presentes na categoria [Features](#Features). </p>
 Para o cadastro de todos serão necessários: Identificador (incrementado automaticamente pelo sistema), Nome Completo, Gênero (Masculino, Feminino, Prefiro não Informar), Data de Nascimento, CPF (apenas números) e Telefone.
 
 
