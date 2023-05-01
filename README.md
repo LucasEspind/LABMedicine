@@ -228,7 +228,7 @@ Exemplo: https://localhost:7050/api/Atendimentos
 
 A listagem de Consultas por Paciente é um endpoint que solicita pela rota o identificador do paciente e retorna todas as suas consultas realizadas.
 
-Exemplo: https://localhost:7050/api/Atendimentos/{idMedico}
+https://localhost:7050/api/Atendimentos/Paciente/{idPaciente}
 
 
 ### Listagem de Consultas por Médico
@@ -236,7 +236,7 @@ Exemplo: https://localhost:7050/api/Atendimentos/{idMedico}
 
 A listagem de Consultas por Médico é um endpoint que solicita pela rota o identificador do Médico e retorna todas as suas consultas realizadas.
 
-Exemplo: https://localhost:7050/api/Atendimentos/{idMedico}
+Exemplo: https://localhost:7050/api/Atendimentos/Medico/{idMedico}
 
 
 ### Autor

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LABMedicine.Migrations
 {
     [DbContext(typeof(labmedicinebdContext))]
-    [Migration("20230427000835_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230501193749_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,12 +27,12 @@ namespace LABMedicine.Migrations
 
             modelBuilder.Entity("LABMedicine.Models.AtendimentosModel", b =>
                 {
-                    b.Property<int>("Atendimentos")
+                    b.Property<int>("Codigo_Atendimento")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("Codigo_Atendimento");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Atendimentos"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Codigo_Atendimento"));
 
                     b.Property<int>("Identificador_Medico")
                         .HasColumnType("int")
@@ -46,7 +46,7 @@ namespace LABMedicine.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Especialidade_Clinica");
 
-                    b.HasKey("Atendimentos");
+                    b.HasKey("Codigo_Atendimento");
 
                     b.ToTable("Atendimentos");
                 });

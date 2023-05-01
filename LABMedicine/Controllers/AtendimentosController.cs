@@ -29,7 +29,8 @@ namespace LABMedicine.Controllers
             {
                 return NotFound("Identificador do paciente não existe no sistema!");
             }
-            else if (medico == null) {
+            else if (medico == null)
+            {
                 return NotFound("Identificador do médico não existe no sistema!");
             }
             if (medico.EstadoSistema == EstadoSistemaEnum.Inativo)
@@ -56,6 +57,9 @@ namespace LABMedicine.Controllers
             return Ok("Atendimento realizado com sucesso! Os dados no sistema foram alterados!");
         }
 
+        // Código a parte que não foi solicitado na documentação
+
+        // Um get que retorna todos os atendimentos
         [HttpGet]
         public ActionResult ListaAtendimentos()
         {
@@ -67,8 +71,9 @@ namespace LABMedicine.Controllers
             return Ok(atendimentos);
         }
 
-        [HttpGet("{idPaciente}")]
-        public ActionResult AtendimentosPorPaciente(int idPaciente) 
+        // Um get que retorna todos os atendimentos do paciente com Id selecionado
+        [HttpGet("Paciente/{idPaciente}")]
+        public ActionResult AtendimentosPorPaciente(int idPaciente)
         {
             List<AtendimentosModel> atendimentos = new List<AtendimentosModel>();
             foreach (var atendimento in labmedicinebd.Atendimentos)
@@ -78,21 +83,31 @@ namespace LABMedicine.Controllers
                     atendimentos.Add(atendimento);
                 }
             }
-            return Ok(atendimentos);
+            if (atendimentos.Count > 0) 
+            { 
+                return Ok(atendimentos); 
+            }
+            return BadRequest("Identificador não encontrado no sistema");
         }
 
-        [HttpGet("{idMedico}")]
+        // Um get que retorna todos os atendimentos do Médico com Id selecionado
+
+        [HttpGet("Medico/{idMedico}")]
         public ActionResult AtendimentosPorMedico(int idMedico)
         {
             List<AtendimentosModel> atendimentos = new List<AtendimentosModel>();
             foreach (var atendimento in labmedicinebd.Atendimentos)
             {
-                if (atendimento.Identificador_Paciente == idMedico)
+                if (atendimento.Identificador_Medico == idMedico)
                 {
                     atendimentos.Add(atendimento);
                 }
             }
-            return Ok(atendimentos);
+            if (atendimentos.Count > 0) 
+            {
+                return Ok(atendimentos);
+            }
+            return BadRequest("Identificador não encontrado no sistema");
         }
     }
 }
